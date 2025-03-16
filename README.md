@@ -2,6 +2,9 @@
 
 A Model Context Protocol (MCP) server for Microsoft Bing Search API integration, allowing AI assistants to perform web, news, and image searches.
 
+![Bing Search MCP Server](bing_search_mcp.png)
+
+
 ## Features
 
 - Web search for general information
@@ -14,7 +17,7 @@ A Model Context Protocol (MCP) server for Microsoft Bing Search API integration,
 
 - Python 3.10 or higher
 - Microsoft Bing Search API key
-- MCP-compatible client (e.g., Claude for Desktop)
+- MCP-compatible client (e.g., Claude Desktop, Cursor)
 
 ## Installation
 
@@ -32,13 +35,13 @@ Set the required environment variables:
 
 ```bash
 export BING_API_KEY="your-bing-api-key"
-export BING_API_URL="https://api.bing.microsoft.com/v7.0"  # Optional
+export BING_API_URL="https://api.bing.microsoft.com/"  # Optional
 ```
 
 For Windows:
 ```cmd
 set BING_API_KEY=your-bing-api-key
-set BING_API_URL=https://api.bing.microsoft.com/v7.0
+set BING_API_URL=https://api.bing.microsoft.com/
 ```
 
 ## Usage
@@ -46,12 +49,12 @@ set BING_API_URL=https://api.bing.microsoft.com/v7.0
 ### Running the server
 
 ```
-python main.py
+uv run -m bing_search_mcp
 ```
 
 ### Configuring with Claude for Desktop
 
-Add the following to your Claude for Desktop configuration file (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS or `%APPDATA%\Claude\claude_desktop_config.json` on Windows):
+Add the following to your Claude Desktop configuration file (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS or `%APPDATA%\Claude\claude_desktop_config.json` on Windows):
 
 ```json
 {
@@ -72,6 +75,7 @@ Add the following to your Claude for Desktop configuration file (`~/Library/Appl
   }
 }
 ```
+![Claude Code Bing Search MCP](claude_bing_search.png)
 
 ## Available Tools
 
