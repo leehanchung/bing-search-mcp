@@ -1,10 +1,32 @@
 [project]
-name = "bing"
+name = "bing_search_mcp"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "dotenv>=0.9.9",
     "httpx>=0.28.1",
     "mcp[cli]>=1.4.1",
+    "ruff>=0.11.0",
+]
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+# Enable flake8-bugbear (B) rules
+select = ["E", "F", "B", "I"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.3.0",
+    "mypy>=1.9.0",
+    "pytest>=8.0.0",
 ]
