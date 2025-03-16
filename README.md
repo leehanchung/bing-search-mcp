@@ -4,7 +4,7 @@ A Model Context Protocol (MCP) server for Microsoft Bing Search API integration,
 
 [![smithery badge](https://smithery.ai/badge/@leehanchung/bing-search-mcp)](https://smithery.ai/server/@leehanchung/bing-search-mcp)
 
-![Bing Search MCP Server](mcp_server_bin_search.png)
+![Bing Search MCP Server](assets/mcp_server_bing_search.png)
 
 
 ## Features
@@ -77,7 +77,7 @@ Add the following to your Claude Desktop configuration file (`~/Library/Applicat
   }
 }
 ```
-![Claude Code Bing Search MCP](claude_bing_search.png)
+![Claude Code Bing Search MCP](assets/claude_bing_search.png)
 
 ## Available Tools
 
