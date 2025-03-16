@@ -57,9 +57,13 @@ Add the following to your Claude for Desktop configuration file (`~/Library/Appl
 {
   "mcpServers": {
     "bing-search": {
-      "command": "python",
+      "command": "uv",
       "args": [
-        "/path/to/your/bing/main.py"
+        "--directory",
+        "/path/to/your/folder",
+        "run",
+        "-m",
+        "bing_search_mcp"
       ],
       "env": {
         "BING_API_KEY": "your-bing-api-key"
