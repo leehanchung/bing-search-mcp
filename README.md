@@ -2,6 +2,8 @@
 
 A Model Context Protocol (MCP) server for Microsoft Bing Search API integration, allowing AI assistants to perform web, news, and image searches.
 
+[![smithery badge](https://smithery.ai/badge/@leehanchung/bing-search-mcp)](https://smithery.ai/server/@leehanchung/bing-search-mcp)
+
 ![Bing Search MCP Server](bing_search_mcp.png)
 
 
