@@ -11,7 +11,7 @@ Environment variables:
 import os
 import sys
 
-from bing_search_mcp.server import server
+from mcp_server_bing_search.server import server
 
 
 def main():

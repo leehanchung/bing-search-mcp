@@ -10,7 +10,7 @@ startCommand:
     (config) => ({
       "command": "uvx",
       "args": [
-        "bing_search_mcp"
+        "mcp_server_bin_search"
       ],
       "env": {
         ...

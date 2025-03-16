@@ -1,5 +1,5 @@
 [project]
-name = "bing_search_mcp"
+name = "mcp_server_bin_search"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"

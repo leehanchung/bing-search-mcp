@@ -4,7 +4,7 @@ A Model Context Protocol (MCP) server for Microsoft Bing Search API integration,
 
 [![smithery badge](https://smithery.ai/badge/@leehanchung/bing-search-mcp)](https://smithery.ai/server/@leehanchung/bing-search-mcp)
 
-![Bing Search MCP Server](bing_search_mcp.png)
+![Bing Search MCP Server](mcp_server_bin_search.png)
 
 
 ## Features
@@ -51,7 +51,7 @@ set BING_API_URL=https://api.bing.microsoft.com/
 ### Running the server
 
 ```
-uv run -m bing_search_mcp
+uv run -m mcp_server_bin_search
 ```
 
 ### Configuring with Claude for Desktop
@@ -68,7 +68,7 @@ Add the following to your Claude Desktop configuration file (`~/Library/Applicat
         "/path/to/your/folder",
         "run",
         "-m",
-        "bing_search_mcp"
+        "mcp_server_bin_search"
       ],
       "env": {
         "BING_API_KEY": "your-bing-api-key"

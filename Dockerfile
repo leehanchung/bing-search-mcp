@@ -1,5 +1,5 @@
 # Use a Python image with uv pre-installed
-FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS uv
+FROM ghcr.io/astral-sh/uv:python3.10-bookworm-slim AS uv
 
 # Install the project into `/app`
 WORKDIR /app
@@ -22,7 +22,7 @@ ADD . /app
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev --no-editable
 
-FROM python:3.12-slim-bookworm
+FROM python:3.10-slim-bookworm
 
 WORKDIR /app
  
@@ -32,5 +32,12 @@ COPY --from=uv --chown=app:app /app/.venv /app/.venv
 # Place executables in the environment at the front of the path
 ENV PATH="/app/.venv/bin:$PATH"
 
-# when running the container, add --db-path and a bind mount to the host's db file
-ENTRYPOINT ["bing_search_mcp"]
+# Copy the application code
+COPY . .
+
+# Default command to run the Bing Search MCP server
+ENTRYPOINT ["python", "-m", "mcp_server_bing_search"]
+
+# Example usage:
+# Build: docker build -t bing-search-mcp .
+# Run: docker run -e BING_API_KEY=your-key -p 8000:8000 bing-search-mcp
