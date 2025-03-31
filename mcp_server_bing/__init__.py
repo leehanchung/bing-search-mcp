@@ -1,5 +1,7 @@
-from . import server
+from mcp_server_bing.server import server
 import asyncio
+import os
+import sys
 
 def main():
     """Initialize and run the MCP server."""
@@ -20,11 +22,5 @@ def main():
     print("Starting Bing Search MCP server...", file=sys.stderr)
     # Run server synchronously even within async main
     asyncio.run(server.run(transport="stdio"))
-
-
-if __name__ == "__main__":
-    # Run the async main function
-    asyncio.run(main())
-
 
 __all__ = ["main", "server"]

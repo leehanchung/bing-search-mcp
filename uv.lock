@@ -178,7 +178,7 @@ cli = [
 ]
 
 [[package]]
-name = "mcp-server-bing-search"
+name = "mcp-server-bing"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
