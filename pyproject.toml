@@ -1,32 +1,70 @@
 [project]
-name = "mcp_server_bin_search"
+name = "mcp_server_bing"
 version = "0.1.0"
-description = "Add your description here"
+description = "MCP server implementation for Bing Search API integration"
 readme = "README.md"
 requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "Hanchung Lee", email = "leehanchung@gmail.com" }
+]
 dependencies = [
-    "dotenv>=0.9.9",
+    "python-dotenv>=1.0.1",
     "httpx>=0.28.1",
     "mcp[cli]>=1.4.1",
-    "ruff>=0.11.0",
 ]
 
 [tool.ruff]
-line-length = 79
+line-length = 88
+target-version = "py310"
 
 [tool.ruff.lint]
-# Enable flake8-bugbear (B) rules
-select = ["E", "F", "B", "I"]
+select = [
+    "E",     # pycodestyle
+    "F",     # pyflakes
+    "B",     # flake8-bugbear
+    "I",     # isort
+    "N",     # pep8-naming
+    "UP",    # pyupgrade
+    "PL",    # pylint
+    "RUF",   # ruff-specific
+    "SIM",   # flake8-simplify
+    "TCH",   # flake8-type-checking
+    "TID",   # flake8-tidy-imports
+    "ERA",   # eradicate
+]
 ignore = []
 
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
 line-ending = "auto"
+skip-magic-trailing-comma = false
+
+[tool.ruff.isort]
+combine-as-imports = true
+force-wrap-aliases = true
+
+[tool.ruff.lint.pep8-naming]
+classmethod-decorators = [
+    "classmethod",
+    "pydantic.validator",
+    "pydantic.root_validator"
+]
 
 [project.optional-dependencies]
 dev = [
-    "ruff>=0.3.0",
+    "pyright>=1.1.398",
+    "ruff>=0.11.0",
     "mypy>=1.9.0",
     "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.5",
+    "pytest-cov>=4.1.0"
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+mcp-server-bing = "mcp_server_bing:main"

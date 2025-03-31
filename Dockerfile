@@ -32,11 +32,8 @@ COPY --from=uv --chown=app:app /app/.venv /app/.venv
 # Place executables in the environment at the front of the path
 ENV PATH="/app/.venv/bin:$PATH"
 
-# Copy the application code
-COPY . .
-
 # Default command to run the Bing Search MCP server
-ENTRYPOINT ["python", "-m", "mcp_server_bing_search"]
+ENTRYPOINT ["mcp-server-bing"]
 
 # Example usage:
 # Build: docker build -t bing-search-mcp .
