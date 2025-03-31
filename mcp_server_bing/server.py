@@ -1,4 +1,6 @@
+import asyncio  # Add asyncio import
 import os
+import sys
 import time
 
 import httpx
@@ -14,19 +16,24 @@ server = FastMCP(
     prompt="""
 # Bing Search MCP Server
 
-This server provides tools for searching the web using Microsoft Bing's API. It allows you to search for web pages, news articles, and images.
+This server provides tools for searching the web using Microsoft Bing's API.
+It allows you to search for web pages, news articles, and images.
 
 ## Available Tools
 
 ### 1. bing_web_search
-Use this tool for general web searches. Best for finding information, websites, articles, and general content.
+Use this tool for general web searches. Best for finding information,
+websites, articles, and general content.
 
-Example: "What is the capital of France?" or "recipe for chocolate chip cookies"
+Example: "What is the capital of France?" or
+"recipe for chocolate chip cookies"
 
 ### 2. bing_news_search
-Use this tool specifically for news-related queries. Best for current events, recent developments, and timely information.
+Use this tool specifically for news-related queries. Best for current
+events, recent developments, and timely information.
 
-Example: "latest news on climate change" or "recent technology announcements"
+Example: "latest news on climate change" or
+"recent technology announcements"
 
 ### 3. bing_image_search
 Use this tool for finding images. Best for visual content queries.
@@ -43,13 +50,15 @@ Example: "pictures of golden retrievers" or "Eiffel Tower images"
 
 ## Output Format
 
-All search results will be formatted as text with clear sections for each result item, including:
+All search results will be formatted as text with clear sections for each
+result item, including:
 
 - Web search: Title, URL, and Description
 - News search: Title, URL, Description, Published date, and Provider
 - Image search: Title, Source URL, Image URL, and Size
 
-If the API key is missing or invalid, appropriate error messages will be returned.
+If the API key is missing or invalid, appropriate error messages will be
+returned.
 """,
 )
 
@@ -86,7 +95,8 @@ def check_rate_limit():
 async def bing_web_search(
     query: str, count: int = 10, offset: int = 0, market: str = "en-US"
 ) -> str:
-    """Performs a web search using the Bing Search API for general information and websites.
+    """Performs a web search using the Bing Search API for general information
+    and websites.
 
     Args:
         query: Search query (required)
@@ -98,7 +108,10 @@ async def bing_web_search(
     api_key = os.environ.get("BING_API_KEY", "")
 
     if not api_key:
-        return "Error: Bing API key is not configured. Please set the BING_API_KEY environment variable."
+        return (
+            "Error: Bing API key is not configured. Please set the "
+            "BING_API_KEY environment variable."
+        )
 
     try:
         check_rate_limit()
@@ -150,7 +163,8 @@ async def bing_web_search(
 async def bing_news_search(
     query: str, count: int = 10, market: str = "en-US", freshness: str = "Day"
 ) -> str:
-    """Searches for news articles using Bing News Search API for current events and timely information.
+    """Searches for news articles using Bing News Search API for current
+    events and timely information.
 
     Args:
         query: News search query (required)
@@ -162,7 +176,10 @@ async def bing_news_search(
     api_key = os.environ.get("BING_API_KEY", "")
 
     if not api_key:
-        return "Error: Bing API key is not configured. Please set the BING_API_KEY environment variable."
+        return (
+            "Error: Bing API key is not configured. Please set the "
+            "BING_API_KEY environment variable."
+        )
 
     try:
         check_rate_limit()
@@ -197,12 +214,17 @@ async def bing_news_search(
             results = []
             for result in data["value"]:
                 published_date = result.get("datePublished", "Unknown date")
+                provider_info = result.get("provider", [{"name": "Unknown"}])
+                # Handle potential empty provider list
+                provider_name = (
+                    provider_info[0]["name"] if provider_info else "Unknown"
+                )
                 results.append(
                     f"Title: {result['name']}\n"
                     f"URL: {result['url']}\n"
                     f"Description: {result['description']}\n"
                     f"Published: {published_date}\n"
-                    f"Provider: {result.get('provider', [{'name': 'Unknown'}])[0]['name']}"
+                    f"Provider: {provider_name}"
                 )
 
             return "\n\n".join(results)
@@ -228,7 +250,10 @@ async def bing_image_search(
     api_key = os.environ.get("BING_API_KEY", "")
 
     if not api_key:
-        return "Error: Bing API key is not configured. Please set the BING_API_KEY environment variable."
+        return (
+            "Error: Bing API key is not configured. Please set the "
+            "BING_API_KEY environment variable."
+        )
 
     try:
         check_rate_limit()
@@ -261,7 +286,8 @@ async def bing_image_search(
                     f"Title: {result['name']}\n"
                     f"Source URL: {result['hostPageUrl']}\n"
                     f"Image URL: {result['contentUrl']}\n"
-                    f"Size: {result.get('width', 'Unknown')}x{result.get('height', 'Unknown')}"
+                    f"Size: {result.get('width', 'Unknown')}x"
+                    f"{result.get('height', 'Unknown')}"
                 )
 
             return "\n\n".join(results)
@@ -270,8 +296,3 @@ async def bing_image_search(
         return f"Error communicating with Bing API: {str(e)}"
     except Exception as e:
         return f"Unexpected error: {str(e)}"
-
-
-if __name__ == "__main__":
-    # Initialize and run the server
-    server.run(transport="stdio")

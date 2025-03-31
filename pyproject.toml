@@ -1,5 +1,5 @@
 [project]
-name = "mcp_server_bin_search"
+name = "mcp_server_bing"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -8,7 +8,6 @@ dependencies = [
     "dotenv>=0.9.9",
     "httpx>=0.28.1",
     "mcp[cli]>=1.4.1",
-    "ruff>=0.11.0",
 ]
 
 [tool.ruff]
@@ -24,9 +23,17 @@ quote-style = "double"
 indent-style = "space"
 line-ending = "auto"
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
-    "ruff>=0.3.0",
+    "pyright>=1.1.398",
+    "ruff>=0.11.0",
     "mypy>=1.9.0",
     "pytest>=8.0.0",
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+mcp-server-bing = "mcp_server_bing:main"

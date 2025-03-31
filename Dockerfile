@@ -36,7 +36,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 COPY . .
 
 # Default command to run the Bing Search MCP server
-ENTRYPOINT ["python", "-m", "mcp_server_bing_search"]
+ENTRYPOINT ["python", "-m", "mcp_server_bing"]
 
 # Example usage:
 # Build: docker build -t bing-search-mcp .
