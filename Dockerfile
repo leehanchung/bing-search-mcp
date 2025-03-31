@@ -1,7 +1,7 @@
 # Use a Python image with uv pre-installed
 FROM ghcr.io/astral-sh/uv:python3.10-bookworm-slim AS uv
 
-# Install the project into `/app`
+# Install the project into /app
 WORKDIR /app
 
 # Enable bytecode compilation
@@ -26,15 +26,12 @@ FROM python:3.10-slim-bookworm
 
 WORKDIR /app
  
-COPY --from=uv /root/.local /root/.local
+# COPY --from=uv /root/.local /root/.local
 COPY --from=uv --chown=app:app /app/.venv /app/.venv
 
 # Place executables in the environment at the front of the path
 ENV PATH="/app/.venv/bin:$PATH"
 
+
 # Default command to run the Bing Search MCP server
 ENTRYPOINT ["mcp-server-bing"]
-
-# Example usage:
-# Build: docker build -t bing-search-mcp .
-# Run: docker run -e BING_API_KEY=your-key -p 8000:8000 bing-search-mcp
