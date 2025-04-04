@@ -51,7 +51,7 @@ set BING_API_URL=https://api.bing.microsoft.com/
 ### Running the server
 
 ```
-uv run -m mcp_server_bin_search
+uvx bing-search-mcp
 ```
 
 ### Configuring with Claude for Desktop
@@ -62,13 +62,9 @@ Add the following to your Claude Desktop configuration file (`~/Library/Applicat
 {
   "mcpServers": {
     "bing-search": {
-      "command": "uv",
+      "command": "uvx",
       "args": [
-        "--directory",
-        "/path/to/your/folder",
-        "run",
-        "-m",
-        "mcp_server_bin_search"
+\        "/path/to/your/bing-search-mcp"
       ],
       "env": {
         "BING_API_KEY": "your-bing-api-key"
