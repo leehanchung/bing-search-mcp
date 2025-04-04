@@ -64,7 +64,7 @@ Add the following to your Claude Desktop configuration file (`~/Library/Applicat
     "bing-search": {
       "command": "uvx",
       "args": [
-\        "/path/to/your/bing-search-mcp"
+        "/path/to/your/bing-search-mcp"
       ],
       "env": {
         "BING_API_KEY": "your-bing-api-key"
