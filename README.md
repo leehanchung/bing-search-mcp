@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/leehanchung-bing-search-mcp-badge.png)](https://mseep.ai/app/leehanchung-bing-search-mcp)
+
 # Bing Search MCP Server
 
 A Model Context Protocol (MCP) server for Microsoft Bing Search API integration, allowing AI assistants to perform web, news, and image searches.
